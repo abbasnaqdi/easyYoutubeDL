@@ -18,7 +18,7 @@
 -  ###### Download bash file 
 -  >`wget https://raw.githubusercontent.com/dfmabbas/ellaco/master/ellaco.sh`
 - ###### start comment  
-- > `bash ellaco.sh -q best -s fa -f ls.txt`
+- > `bash ellaco.sh -q best -s fa -f ~/Downloads/ls.txt`
 -  `-q` quality
 - `-s` subtitle language
 - `-f` input file **(sample of the file is available in the repository)**
