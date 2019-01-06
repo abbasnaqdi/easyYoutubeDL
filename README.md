@@ -11,7 +11,7 @@
 
 --
 
-**Dependency ** `youtube-dl` & `aria2c` & `ffmpeg`
+**Dependency**  `youtube-dl` & `aria2c` & `ffmpeg`
 
 - `in macOS`
   - `brew install aria2c && brew install ffmpeg && brew install youtube-dl`
