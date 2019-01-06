@@ -7,7 +7,7 @@ q="best"
 s="none"
 setting="-ciw -4 -R infinite"
 
-log="log.txt"
+log=~/Downloads/log.txt
 rm -rf $log
 touch $log
 printLOG(){
@@ -65,7 +65,7 @@ downoadURL(){
 exec < $f
 while read -r url
 do
-
+    
     if [[ $1 == *"end"* ]]; then
         #say complete download items #macos
         echo "COMPLETE DOWNLOAD ITEMS"
