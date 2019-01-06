@@ -1,13 +1,13 @@
-**Ellaco** is a manager for automating download lists based on` youtube-dl` and `aria2c`
+**Ellaco** is a manager for automating download lists based on` youtube-dl` and `aria2`
 
 ##### Feature
 - [x] download audio or video or both in (`channel` & `playlist` & `direct link` in ` youtube`)
 - [x] add the embedded `subtitle` by `Youtube Machine Learning`
-- [x] download `any file` by aria2c
+- [x] download `any file` by aria2
 - [x] categorize files as folders
 - [ ] **?**
 
-##### Dependency  `youtube-dl` & `aria2c` & `ffmpeg`
+##### Dependency  `youtube-dl` & `aria2` & `ffmpeg`
 -  ###### In terminal macOS
 -  > `brew install aria2 && brew install ffmpeg && brew install youtube-dl`
 -  ###### In terminal gnu/linux
@@ -22,7 +22,7 @@
 -  `-q` quality
 - `-s` subtitle language
 - `-f` input file **(sample of the file is available in the repository)**
-  - ​ `aria2c link sample` http://mirror.umd.edu/linuxmint/name.iso
+  - ​ `aria2 link sample` http://mirror.umd.edu/linuxmint/name.iso
   - ​ `youtube channel sample` https://www.youtube.com/channel/id
   - ​ `youtube playlist sample` https://www.youtube.com/watch?v=id&list=id
   - ​ `youtube vodeo sample` https://www.youtube.com/watch?v=id
