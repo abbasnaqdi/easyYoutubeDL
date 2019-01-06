@@ -36,7 +36,7 @@ if [[ $q != *"best"* ]]; then
 else quality="-f $q"
 fi
 
-videoOutput="-o  ~/Downloads/youtube/%youtube/%(title)s.%(ext)s"
+videoOutput="-o  ~/Downloads/youtube/other/%(title)s.%(ext)s"
 listOutput="-o ~/Downloads/youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -i --yes-playlist"
 channelOutput="-o ~/Downloads/youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 
@@ -65,7 +65,7 @@ downoadURL(){
 exec < $f
 while read -r url
 do
-    
+
     if [[ $1 == *"end"* ]]; then
         #say complete download items #macos
         echo "COMPLETE DOWNLOAD ITEMS"
