@@ -9,9 +9,9 @@
 
 ##### Dependency  `youtube-dl` & `aria2c` & `ffmpeg`
 -  ###### In terminal macOS
--  > `brew install aria2c && brew install ffmpeg && brew install youtube-dl`
+-  > `brew install aria2 && brew install ffmpeg && brew install youtube-dl`
 -  ###### In terminal gnu/linux
--  > `apt install aria2c && apt install ffmpeg && apt install youtube-dl`
+-  > `apt install aria2 && apt install ffmpeg && apt install youtube-dl`
 
 
 ##### How to use this ?
