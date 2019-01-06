@@ -36,11 +36,11 @@ if [[ $q != *"best"* ]]; then
 else quality="-f $q"
 fi
 
-videoOutput="-o youtube/%youtube/%(title)s.%(ext)s"
-listOutput="-o youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -i --yes-playlist"
-channelOutput="-o youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
+videoOutput="-o  ~/Downloads/youtube/%youtube/%(title)s.%(ext)s"
+listOutput="-o ~/Downloads/youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -i --yes-playlist"
+channelOutput="-o ~/Downloads/youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 
-ariaQuery="-x6 -s6 -j1 -c -m 1000 --retry-wait=15 -d aria/"
+ariaQuery="-x6 -s6 -j1 -c -m 1000 --retry-wait=15 -d ~/Downloads/"
 channelQuery="$quality $setting $subtitle $channelOutput"
 playLisQuery="$quality $setting $subtitle $listOutput"
 videoQuery="$quality $setting $subtitle $videoOutput"
