@@ -1,2 +1,5 @@
-//download link (youtube channel or video or user of playlist) && aria2c link 
+http://mirror.umd.edu/linuxmint/images/stable/19.1/linuxmint-19.1-cinnamon-32bit.iso
+https://www.youtube.com/channel/UCxbd5nlCc3nyA1dSRo3cQTw
+https://www.youtube.com/watch?v=qk5F6Bxqhr4&list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE
+https://www.youtube.com/watch?v=0GS2rxROcPo
 end
