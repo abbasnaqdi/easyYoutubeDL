@@ -9,42 +9,34 @@
 
 
 
-**Dependency **`youtube-dl` & `aria2c` & `ffmpeg`
+--
 
-`in macOS`
+**Dependency ** `youtube-dl` & `aria2c` & `ffmpeg`
 
-​	`brew install aria2c && brew install ffmpeg && brew install youtube-dl`
+- `in macOS`
+  - `brew install aria2c && brew install ffmpeg && brew install youtube-dl`
 
-`in gnu/linux`
+- `in gnu/linux`
+  - `apt install aria2c && apt install ffmpeg && apt install youtube-dl`
 
-​	`apt install aria2c && apt install ffmpeg && apt install youtube-dl`
-
-
+--
 
 **How to use this ?** ‍
 
-download manual `ellaco.sh` or auto download by `wget‍‍`
+- `wget https://raw.githubusercontent.com/dfmabbas/ellaco/master/ellaco.sh`
 
-​	`wget https://raw.githubusercontent.com/dfmabbas/ellaco/master/ellaco.sh`
+**$terminal** -> `bash ellaco.sh -q best -s fa -f ls.txt`
 
+- `-q` quality
 
+- `-s` subtitle language
 
-​	**$terminal** -> `bash ellaco.sh -q best -s fa -f ls.txt`
+- `-f` input file **(sample of the file is available in the repository)**
+  - ​	`aria2c link sample` http://mirror.umd.edu/linuxmint/name.iso
+  - ​	`youtube channel sample` https://www.youtube.com/channel/id
+  - ​	`youtube playlist sample` https://www.youtube.com/watch?v=id&list=id
+  - ​	`youtube vodeo sample` https://www.youtube.com/watch?v=id
 
-​	`-q` quality
-
-​	`-s` subtitle language
-
-​	`-f` input file **(sample of the file is available in the repository)**
-
-​		`aria2c link sample` http://mirror.umd.edu/linuxmint/images/stable/19.1/linuxmint-19.1-cinnamon-32bit.iso
-
-​		`youtube channel sample` https://www.youtube.com/channel/UCxbd5nlCc3nyA1dSRo3cQTw
-
-​		`youtube playlist sample` https://www.youtube.com/watch?v=qk5F6Bxqhr4&list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE
-
-​		`youtube vodeo sample` https://www.youtube.com/watch?v=0GS2rxROcPo
-
-
+--
 
 **enjoy :)**
