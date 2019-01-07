@@ -1,7 +1,7 @@
 **Ellaco** is a manager for automating download lists based on` youtube-dl` and `aria2`
 
 ##### Feature
-- [x] download audio or video or both in (`channel` & `playlist` & `direct link` in ` youtube`)
+- [x] download  video in (`channel` & `playlist` & `direct link` in ` youtube`)
 - [x] add the embedded `subtitle` by `Youtube Machine Learning`
 - [x] download `any file` by aria2
 - [x] categorize files as folders
@@ -15,13 +15,15 @@
 
 
 ##### How to use this ?
--  ###### Download bash file 
--  >`wget https://raw.githubusercontent.com/dfmabbas/ellaco/master/ellaco.sh`
+- ###### Download bash file 
+- >`wget https://raw.githubusercontent.com/dfmabbas/ellaco/master/ellaco.sh`
 - ###### start comment  
-- > `bash ellaco.sh -q best -s fa -f ~/Downloads/ls.txt`
--  `-q` quality
-- `-s` subtitle language
+- > `bash ellaco.sh -q best -s fa -f ls.txt`
+- `-q` quality `(optional)` - default best - for example best
+- `-s` subtitle language `(optional)` - for example en, fa, fr, ar, sp and ...
+- `-p` path `(optional)` - default current path - for example '~/Downloads/'
 - `-f` input file **(sample of the file is available in the repository)**
+
   - ​ `aria2 link sample` http://mirror.umd.edu/linuxmint/name.iso
   - ​ `youtube channel sample` https://www.youtube.com/channel/id
   - ​ `youtube playlist sample` https://www.youtube.com/watch?v=id&list=id

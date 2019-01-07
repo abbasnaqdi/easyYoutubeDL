@@ -5,24 +5,28 @@ echo "LOADING ..."
 
 q="best"
 s="none"
+p=$PWD'/'
+
 setting="-ciw -4 -R infinite"
 
-log=~/Downloads/log.txt
+while getopts q:f:p:s: option
+do
+    case "${option}"
+        in
+        q) q=${OPTARG};;
+        f) f=${OPTARG};;
+        p) p=${OPTARG};;
+        s) s=${OPTARG};;
+    esac
+done
+
+log="log.txt"
 rm -rf $log
 touch $log
 printLOG(){
     echo $1 >> $log
 }
 
-while getopts q:f:s: option
-do
-    case "${option}"
-        in
-        q) q=${OPTARG};;
-        s) s=${OPTARG};;
-        f) f=${OPTARG};;
-    esac
-done
 
 if [[ $s == *"none"* ]]; then
     subtitle=""
@@ -36,11 +40,11 @@ if [[ $q != *"best"* ]]; then
 else quality="-f $q"
 fi
 
-videoOutput="-o  ~/Downloads/youtube/other/%(title)s.%(ext)s"
-listOutput="-o ~/Downloads/youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -i --yes-playlist"
-channelOutput="-o ~/Downloads/youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
+videoOutput="-o  $p""youtube/other/%(title)s.%(ext)s"
+listOutput="-o $p ""youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -i --yes-playlist"
+channelOutput="-o $p""youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 
-ariaQuery="-x6 -s6 -j1 -c -m 1000 --retry-wait=15 -d ~/Downloads/"
+ariaQuery="-x6 -s6 -j1 -c -m 1000 --retry-wait=15 -d $p"
 channelQuery="$quality $setting $subtitle $channelOutput"
 playLisQuery="$quality $setting $subtitle $listOutput"
 videoQuery="$quality $setting $subtitle $videoOutput"
