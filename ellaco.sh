@@ -27,7 +27,6 @@ printLOG(){
     echo $1 >> $log
 }
 
-
 if [[ $s == *"none"* ]]; then
     subtitle=""
 else
@@ -44,7 +43,6 @@ videoOutput="-o  $p""youtube/other/%(title)s.%(ext)s"
 listOutput="-o $p ""youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -i --yes-playlist"
 channelOutput="-o $p""youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 
-ariaQuery="-x6 -s6 -j1 -c -m 1000 --retry-wait=15 -d $p"
 channelQuery="$quality $setting $subtitle $channelOutput"
 playLisQuery="$quality $setting $subtitle $listOutput"
 videoQuery="$quality $setting $subtitle $videoOutput"
@@ -56,8 +54,6 @@ downoadURL(){
         youtube-dl $videoQuery $1
         elif [[ $1 == *"youtube"* && $1 == *"channel"* ]]; then
         youtube-dl $channelQuery $1
-        elif [[ $1 == *"http"* && $1 != *"youtube"* ]]; then
-        aria2c $ariaQuery $1
     else
         printLOG "JUMP"
         return
