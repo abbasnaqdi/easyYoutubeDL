@@ -49,7 +49,6 @@ videoQuery="$quality $setting $subtitle $videoOutput"
 
 downoadURL(){
     if [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
-        echo $playLisQuery $1
         youtube-dl $playLisQuery $1
         elif [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
         youtube-dl $videoQuery $1
