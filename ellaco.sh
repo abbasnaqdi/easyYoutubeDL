@@ -40,7 +40,7 @@ else quality="-f $q"
 fi
 
 videoOutput="-o  $p""youtube/other/%(title)s.%(ext)s"
-listOutput="-o $p ""youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -i --yes-playlist"
+listOutput="-o $p""youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -i --yes-playlist"
 channelOutput="-o $p""youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 
 channelQuery="$quality $setting $subtitle $channelOutput"
@@ -48,7 +48,8 @@ playLisQuery="$quality $setting $subtitle $listOutput"
 videoQuery="$quality $setting $subtitle $videoOutput"
 
 downoadURL(){
-    if [[ $1 == *"youtube"* && $1 == *"&list="* ]]; then
+    if [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
+        echo $playLisQuery $1
         youtube-dl $playLisQuery $1
         elif [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
         youtube-dl $videoQuery $1
