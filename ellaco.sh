@@ -6,14 +6,14 @@ echo "LOADING ..."
 q="best"
 s="none"
 p=$PWD'/'
+m="500m"
 
-setting="-ciw -4 -R infinite"
-
-while getopts q:f:p:s: option
+while getopts q:m:f:p:s: option
 do
     case "${option}"
         in
         q) q=${OPTARG};;
+        m) m=${OPTARG};;
         f) f=${OPTARG};;
         p) p=${OPTARG};;
         s) s=${OPTARG};;
@@ -26,6 +26,8 @@ touch $log
 printLOG(){
     echo $1 >> $log
 }
+
+setting="-ciw -4 -R infinite --max-filesize $m"
 
 if [[ $s == *"none"* ]]; then
     subtitle=""
