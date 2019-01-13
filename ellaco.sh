@@ -52,9 +52,9 @@ videoQuery="$quality $setting $subtitle $videoOutput"
 downoadURL(){
     if [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
         youtube-dl $playLisQuery $1
-        elif [[ $1 == *"youtube"* && ($1 == *"watch"* || $1 == *"user"*) ]]; then
+        elif [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
         youtube-dl $videoQuery $1
-        elif [[ $1 == *"youtube"* && $1 == *"channel"* ]]; then
+        elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
         youtube-dl $channelQuery $1
     else
         printLOG "JUMP"
