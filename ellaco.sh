@@ -6,7 +6,7 @@ echo "LOADING ..."
 q="best"
 s="none"
 p=$PWD'/'
-m="500m"
+m="800m"
 
 while getopts q:m:f:p:s: option
 do
@@ -35,10 +35,9 @@ else
     subtitle="--write-auto-sub --sub-lang $s --embed-subs"
 fi
 
-if [[ $q != *"best"* ]]; then
-    echo "UNKNOWN ARGUMENT"
-    return
-else quality="-f $q"
+quality="-f bestvideo[ext=mp4]+bestaudio/bestvideo+bestaudio/best"
+if [[ $q != *"highest"* ]]; then
+    quality="-f $q"
 fi
 
 videoOutput="-o  $p""youtube/other/%(title)s.%(ext)s"
@@ -51,6 +50,7 @@ videoQuery="$quality $setting $subtitle $videoOutput"
 
 downoadURL(){
     if [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
+        echo $playLisQuery $1
         youtube-dl $playLisQuery $1
         elif [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
         youtube-dl $videoQuery $1
