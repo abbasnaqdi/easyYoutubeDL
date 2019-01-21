@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 terminal=`tty`
-
+clear
 echo "LOADING ..."
 
 q="highest"
@@ -28,12 +28,6 @@ printLOG(){
 }
 
 setting="-ciw -4 -R infinite --max-filesize $m"
-# aria2c='--external-downloader curl'
-aria2c='--external-downloader aria2c
---external-downloader-args "-k2M"
---external-downloader-args "-c"
---external-downloader-args "-s16"
---external-downloader-args "-x16"'
 
 if [[ $s == *"none"* ]]; then
     subtitle=""
@@ -47,28 +41,32 @@ if [[ $q != *"highest"* ]]; then
 fi
 
 videoOutput="-o $p/youtube/other/%(title)s.%(ext)s"
-listOutput="-o $p/youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s -i --yes-playlist"
+listOutput="-o $p/youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 channelOutput="-o $p/youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
+
+video="$quality $setting $subtitle $videoOutput $ariaConfig"
+playlist="$quality $setting $subtitle $listOutput $ariaConfig"
+channel="$quality $setting $subtitle $channelOutput $ariaConfig"
 
 downoadURL(){
     if [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
-        youtube-dl $aria2c $quality $setting $subtitle $listOutput $1
-    elif [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
-        youtube-dl $aria2c $quality $setting $subtitle $videoOutput $1
-    elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
-        youtube-dl $aria2c $quality $setting $subtitle $channelOutput $1
+        youtube-dl $playlist --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k2m -m 1000 --retry-wait=15' $1
+        elif [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
+        youtube-dl $video --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k2m -m 1000 --retry-wait=15' $1
+        elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
+        youtube-dl $channel --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k2m -m 1000 --retry-wait=15' $1
     else
         printLOG "JUMP"
         return
     fi
-
+    
     printLOG "DOWNLOADED URL -> $1"
 }
 
 exec < $f
 while read -r url
 do
-
+    
     if [[ $1 == *"end"* ]]; then
         #say complete download items #macos
         echo "COMPLETE DOWNLOAD ITEMS"
@@ -76,6 +74,6 @@ do
         return
     else downoadURL $url
     fi
-
+    
 done
 exec < "$terminal"

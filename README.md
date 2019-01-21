@@ -4,22 +4,23 @@
 - [x] download  video in (`channel` & `playlist` & `direct link` in ` youtube`)
 - [x] add the embedded `subtitle` by `Youtube Machine Learning`
 - [x] categorize files as folders
+- [x] 16 concurrent connections
 - [ ] **?**
 
 ##### Dependency : youtube-dl & ffmpeg
 - In **macOS**
 - > ```bash
-  > brew install youtube-dl ffmpeg
+  > brew install youtube-dl ffmpeg aria2
   > ```
 - In **debian** base
 - > ```shell
   > sudo apt update
-  > sudo apt install youtube-dl ffmpeg
+  > sudo apt install youtube-dl ffmpeg aria2
   > ```
 - In **readhat** base
 - > ```shell
   > sudo yum update
-  > sudo yum install youtube-dl ffmpeg 
+  > sudo yum install youtube-dl ffmpeg aria2
   > ```
 
 ##### How to use this ?
@@ -38,7 +39,7 @@
 - `-f` input file **(sample of the file is available in the repository)**
 
   - ​ `youtube channel sample` https://www.youtube.com/channel/id
-  - ​ `youtube playlist sample` https://www.youtube.com/watch?v=id&list=id
+  -  `youtube playlist sample` https://www.youtube.com/playlist?list=id
   - ​ `youtube video sample` https://www.youtube.com/watch?v=id
 
 #### enjoy :)
