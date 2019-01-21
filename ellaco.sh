@@ -50,11 +50,11 @@ channel="$quality $setting $subtitle $channelOutput $ariaConfig"
 
 downoadURL(){
     if [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
-        youtube-dl $playlist --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k2m -m 1000 --retry-wait=15' $1
+        youtube-dl $playlist --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
         elif [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
-        youtube-dl $video --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k2m -m 1000 --retry-wait=15' $1
+        youtube-dl $video --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
         elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
-        youtube-dl $channel --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k2m -m 1000 --retry-wait=15' $1
+        youtube-dl $channel --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
     else
         printLOG "JUMP"
         return
