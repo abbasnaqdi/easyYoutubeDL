@@ -29,12 +29,12 @@
   >```
 - ###### start comment  
 - > ```shell
-  > bash ellaco.sh -q best -s fa -f ls.txt
+  > bash ellaco.sh -q highest -s fa -f ls.txt
   > ```
 - `-q` quality **(optional)** - default highest - for example best, highest
 - `-s` subtitle **(optional)** - for example en, fa, fr, ar, sp and ...
 - `-m` max file size **(optional)** - default 500m - for example 100k, 100m ...
-- `-p` path **(optional)** - default current path - for example ~/Downloads/
+- `-p` path **(optional)** - default current path - for example ~/Downloads
 - `-f` input file **(sample of the file is available in the repository)**
 
   - ​ `youtube channel sample` https://www.youtube.com/channel/id
