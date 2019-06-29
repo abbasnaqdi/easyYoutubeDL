@@ -44,11 +44,13 @@ videoOutput="-o $p/youtube/other/%(title)s.%(ext)s"
 listOutput="-o $p/youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 channelOutput="-o $p/youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 musicOutput="-o $p/soundcoude/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
+otherOutput="-o $p/other/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 
 video="$quality $setting $subtitle $videoOutput"
 playlist="$quality $setting $subtitle $listOutput"
 channel="$quality $setting $subtitle $channelOutput"
 music="$setting $musicOutput"
+other="$quality $otherOutput"
 
 downoadURL(){
     if [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
@@ -59,9 +61,11 @@ downoadURL(){
         youtube-dl $channel --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
         elif [[ $1 == *"soundcloud"* ]]; then
         youtube-dl $music --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
+        elif [[ $1 == *"end"* ]]; then
+            printLOG "JUMP"
+            return
     else
-        printLOG "JUMP"
-        return
+         youtube-dl $other --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
     fi
     
     printLOG "DOWNLOADED URL -> $1"
