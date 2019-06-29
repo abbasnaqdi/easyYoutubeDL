@@ -32,7 +32,7 @@
 - > ```shell
   > bash ellaco.sh -q highest -s fa -f ls.txt
   > ```
-- `-q` quality **(optional)** - default highest - for example best, highest
+- `-q` quality **(optional)** - default highest - for example best, highest, audio (only best audio)
 - `-s` subtitle **(optional)** - for example en, fa, fr, ar, sp and ...
 - `-m` max file size **(optional)** - default 500m - for example 100k, 100m ...
 - `-p` path **(optional)** - default current path - for example ~/Downloads

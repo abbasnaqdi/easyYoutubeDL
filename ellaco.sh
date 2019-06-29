@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-terminal=`tty`
+terminal=$(tty)
 clear
 echo "LOADING ..."
 
@@ -8,23 +8,22 @@ s="none"
 p=$PWD'/'
 m="2g"
 
-while getopts q:m:f:p:s: option
-do
-    case "${option}"
-        in
-        q) q=${OPTARG};;
-        m) m=${OPTARG};;
-        f) f=${OPTARG};;
-        p) p=${OPTARG};;
-        s) s=${OPTARG};;
+while getopts q:m:f:p:s: option; do
+    case "${option}" in
+
+    q) q=${OPTARG} ;;
+    m) m=${OPTARG} ;;
+    f) f=${OPTARG} ;;
+    p) p=${OPTARG} ;;
+    s) s=${OPTARG} ;;
     esac
 done
 
 log="log.txt"
 rm -rf $log
 touch $log
-printLOG(){
-    echo $1 >> $log
+printLOG() {
+    echo $1 >>$log
 }
 
 setting="-ciw -4 -R infinite --max-filesize $m"
@@ -36,7 +35,9 @@ else
 fi
 
 quality="-f bestvideo[ext=mp4]+bestaudio/bestvideo+bestaudio/best"
-if [[ $q != *"highest"* ]]; then
+if [[ $q == *"audio"* ]]; then
+    quality="-f bestaudio --extract-audio --embed-thumbnail --add-metadata -x --audio-format mp3 --prefer-ffmpeg"
+elif [[ $q != *"highest"* ]]; then
     quality="-f $q"
 fi
 
@@ -52,29 +53,28 @@ channel="$quality $setting $subtitle $channelOutput"
 music="$setting $musicOutput"
 other="$quality $otherOutput"
 
-downoadURL(){
+downoadURL() {
     if [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
         youtube-dl $playlist --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
-        elif [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
+    elif [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
         youtube-dl $video --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
-        elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
+    elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
         youtube-dl $channel --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
-        elif [[ $1 == *"soundcloud"* ]]; then
+    elif [[ $1 == *"soundcloud"* ]]; then
         youtube-dl $music --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
-        elif [[ $1 == *"end"* ]]; then
-            printLOG "JUMP"
-            return
+    elif [[ $1 == *"end"* ]]; then
+        printLOG "JUMP"
+        return
     else
-         youtube-dl $other --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
+        youtube-dl $other --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
     fi
-    
+
     printLOG "DOWNLOADED URL -> $1"
 }
 
-exec < $f
-while read -r url
-do
-    
+exec <$f
+while read -r url; do
+
     if [[ $1 == *"end"* ]]; then
         #say complete download items #macos
         echo "COMPLETE DOWNLOAD ITEMS"
@@ -84,6 +84,6 @@ do
         clear
         downoadURL $url
     fi
-    
+
 done
-exec < "$terminal"
+exec <"$terminal"
