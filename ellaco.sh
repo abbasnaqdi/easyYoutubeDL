@@ -54,10 +54,10 @@ music="$setting $musicOutput"
 other="$quality $otherOutput"
 
 downoadURL() {
-    if [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
-        youtube-dl $playlist --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
-    elif [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
+    if [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
         youtube-dl $video --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
+    elif [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
+        youtube-dl $playlist --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
     elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
         youtube-dl $channel --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
     elif [[ $1 == *"soundcloud"* ]]; then
