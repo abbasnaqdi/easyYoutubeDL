@@ -5,7 +5,7 @@ echo "LOADING ..."
 
 q="highest"
 s="none"
-p=$PWD'/'
+p=$PWD
 m="2g"
 
 while getopts q:m:f:p:s: option; do
