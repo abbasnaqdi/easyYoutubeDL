@@ -36,7 +36,7 @@ fi
 
 quality="-f bestvideo[ext=mp4]+bestaudio/bestvideo+bestaudio/best"
 if [[ $q == *"audio"* ]]; then
-    quality="-f bestaudio --extract-audio --embed-thumbnail --add-metadata -x --audio-format mp3 --prefer-ffmpeg"
+    quality="-f bestaudio -x --audio-format mp3"
 elif [[ $q != *"highest"* ]]; then
     quality="-f $q"
 fi
@@ -55,18 +55,18 @@ other="$quality $otherOutput"
 
 downoadURL() {
     if [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
-        youtube-dl $video --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
+        youtube-dl $video --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
     elif [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
-        youtube-dl $playlist --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
+        youtube-dl $playlist --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
     elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
-        youtube-dl $channel --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
+        youtube-dl $channel --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
     elif [[ $1 == *"soundcloud"* ]]; then
-        youtube-dl $music --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
+        youtube-dl $music --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
     elif [[ $1 == *"end"* ]]; then
         printLOG "JUMP"
         return
     else
-        youtube-dl $other --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 1000 --retry-wait=15' $1
+        youtube-dl $other --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
     fi
 
     printLOG "DOWNLOADED URL -> $1"
