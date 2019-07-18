@@ -36,7 +36,7 @@ fi
 
 quality="-f bestvideo[ext=mp4]+bestaudio/bestvideo+bestaudio/best"
 if [[ $q == *"audio"* ]]; then
-    quality="-f bestaudio -x --audio-format mp3"
+    quality="-f bestaudio[ext=m4a] --embed-thumbnail --add-metadata"
 elif [[ $q != *"highest"* ]]; then
     quality="-f $q"
 fi
