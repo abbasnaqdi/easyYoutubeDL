@@ -8,14 +8,13 @@ s="none"
 p=$PWD
 m="2g"
 
-while getopts q:m:f:p:s:y option; do
+while getopts q:m:f:p:s option; do
     case "${option}" in
     q) q=${OPTARG} ;;
     m) m=${OPTARG} ;;
     f) f=${OPTARG} ;;
     p) p=${OPTARG} ;;
     s) s=${OPTARG} ;;
-    y) y=${OPTARG} ;;
     esac
 done
 
@@ -35,10 +34,9 @@ else
 fi
 
 quality="-f bestvideo[ext=mp4]+bestaudio/bestvideo+bestaudio/best"
+
 if [[ $q == *"audio"* ]]; then
     quality="-f bestaudio[ext=m4a]"
-elif [[ $q != *"highest"* ]]; then
-    quality="-f $q"
 fi
 
 videoOutput="-o $p/youtube/other/%(title)s.%(ext)s"
@@ -47,11 +45,11 @@ channelOutput="-o $p/youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_inde
 musicOutput="-o $p/soundcoude/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 otherOutput="-o $p/other/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 
-video="$y $quality $setting $subtitle $videoOutput"
-playlist="$y $quality $setting $subtitle $listOutput"
-channel="$y $quality $setting $subtitle $channelOutput"
-music="$y $setting $musicOutput"
-other="$y $quality $otherOutput"
+video="$quality $setting $subtitle $videoOutput"
+playlist="$quality $setting $subtitle $listOutput"
+channel="$quality $setting $subtitle $channelOutput"
+music="$setting $musicOutput"
+other="$quality $otherOutput"
 
 downoadURL() {
     if [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
@@ -66,7 +64,7 @@ downoadURL() {
         printLOG "JUMP"
         return
     else
-        youtube-dl $other -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl -v $other -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
     fi
 
     printLOG "DOWNLOADED URL -> $1"
