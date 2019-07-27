@@ -8,14 +8,14 @@ s="none"
 p=$PWD
 m="2g"
 
-while getopts q:m:f:p:s: option; do
+while getopts q:m:f:p:s:y option; do
     case "${option}" in
-
     q) q=${OPTARG} ;;
     m) m=${OPTARG} ;;
     f) f=${OPTARG} ;;
     p) p=${OPTARG} ;;
     s) s=${OPTARG} ;;
+    y) y=${OPTARG} ;;
     esac
 done
 
@@ -36,7 +36,7 @@ fi
 
 quality="-f bestvideo[ext=mp4]+bestaudio/bestvideo+bestaudio/best"
 if [[ $q == *"audio"* ]]; then
-    quality="-f bestaudio[ext=m4a] --embed-thumbnail --add-metadata"
+    quality="-f bestaudio[ext=m4a]"
 elif [[ $q != *"highest"* ]]; then
     quality="-f $q"
 fi
@@ -47,26 +47,26 @@ channelOutput="-o $p/youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_inde
 musicOutput="-o $p/soundcoude/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 otherOutput="-o $p/other/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 
-video="$quality $setting $subtitle $videoOutput"
-playlist="$quality $setting $subtitle $listOutput"
-channel="$quality $setting $subtitle $channelOutput"
-music="$setting $musicOutput"
-other="$quality $otherOutput"
+video="$y $quality $setting $subtitle $videoOutput"
+playlist="$y $quality $setting $subtitle $listOutput"
+channel="$y $quality $setting $subtitle $channelOutput"
+music="$y $setting $musicOutput"
+other="$y $quality $otherOutput"
 
 downoadURL() {
     if [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
-        youtube-dl $video --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl $video --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
     elif [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
-        youtube-dl $playlist --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl $playlist --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
     elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
-        youtube-dl $channel --convert-subs 'srt' --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl $channel --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
     elif [[ $1 == *"soundcloud"* ]]; then
-        youtube-dl $music --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl $music -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
     elif [[ $1 == *"end"* ]]; then
         printLOG "JUMP"
         return
     else
-        youtube-dl $other --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl $other -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
     fi
 
     printLOG "DOWNLOADED URL -> $1"
