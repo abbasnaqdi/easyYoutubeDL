@@ -37,6 +37,8 @@ quality="-f bestvideo[ext=mp4]+bestaudio/bestvideo+bestaudio/best"
 
 if [[ $q == *"audio"* ]]; then
     quality="-f bestaudio[ext=m4a]"
+elif [[ $q != *"highest"* ]]; then
+    quality="-f $q"
 fi
 
 videoOutput="-o $p/youtube/other/%(title)s.%(ext)s"
@@ -64,7 +66,7 @@ downoadURL() {
         printLOG "JUMP"
         return
     else
-        youtube-dl -v $other -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl -v $other -i 11 $1
     fi
 
     printLOG "DOWNLOADED URL -> $1"
