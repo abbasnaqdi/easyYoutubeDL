@@ -10,15 +10,15 @@ m="2g"
 
 while getopts q:m:f:p:s option; do
     case "${option}" in
-    q) q=${OPTARG} ;;
-    m) m=${OPTARG} ;;
-    f) f=${OPTARG} ;;
-    p) p=${OPTARG} ;;
-    s) s=${OPTARG} ;;
+        q) q=${OPTARG} ;;
+        m) m=${OPTARG} ;;
+        f) f=${OPTARG} ;;
+        p) p=${OPTARG} ;;
+        s) s=${OPTARG} ;;
     esac
 done
 
-log="log.txt"
+log="$p/log.txt"
 rm -rf $log
 touch $log
 printLOG() {
@@ -37,7 +37,7 @@ quality="-f bestvideo[ext=mp4]+bestaudio/bestvideo+bestaudio/best"
 
 if [[ $q == *"audio"* ]]; then
     quality="-f bestaudio[ext=m4a]"
-elif [[ $q != *"highest"* ]]; then
+    elif [[ $q != *"highest"* ]]; then
     quality="-f $q"
 fi
 
@@ -55,28 +55,28 @@ other="$quality $otherOutput"
 
 downoadURL() {
     if [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
-        youtube-dl $video --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
-    elif [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
-        youtube-dl $playlist --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
-    elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
-        youtube-dl $channel --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
-    elif [[ $1 == *"soundcloud"* ]]; then
+        youtube-dl $video --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1
+        elif [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
+        youtube-dl $playlist --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1
+        elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
+        youtube-dl $channel --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1
+        elif [[ $1 == *"soundcloud"* ]]; then
         youtube-dl $music -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
-    elif [[ $1 == *"end"* ]]; then
+        elif [[ $1 == *"end"* ]]; then
         printLOG "JUMP"
         return
     else
-        youtube-dl -v $other -i 11 $1
+        youtube-dl $other -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1
     fi
-
+    
     printLOG "DOWNLOADED URL -> $1"
 }
 
 exec <$f
 while read -r url; do
-
+    
     if [[ $1 == *"end"* ]]; then
-        #say complete download items #macos
+        say complete download items #macos
         echo "COMPLETE DOWNLOAD ITEMS"
         break
         return
@@ -84,6 +84,6 @@ while read -r url; do
         clear
         downoadURL $url
     fi
-
+    
 done
 exec <"$terminal"
