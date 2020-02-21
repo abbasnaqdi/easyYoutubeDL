@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 terminal=$(tty)
 clear
-echo "LOADING ..."
+
+OS="`uname`"
+echo "STARTING ELLACO DOWNOAD ..."
 
 q="highest"
 s="none"
@@ -69,15 +71,17 @@ downoadURL() {
         youtube-dl $other -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1
     fi
     
-    printLOG "DOWNLOADED URL -> $1"
+    printLOG "DOWNLOADED URL -> $1 & NEXT ..."
 }
 
 exec <$f
 while read -r url; do
     
     if [[ $1 == *"end"* ]]; then
-        say complete download items #macos
         echo "COMPLETE DOWNLOAD ITEMS"
+        if [[ "$OS" == "Darwin" ]]; then
+            say complete download items #macos
+        fi
         break
         return
     else
