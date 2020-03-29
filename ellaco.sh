@@ -46,7 +46,7 @@ fi
 videoOutput="-o $p/youtube/other/%(title)s.%(ext)s"
 listOutput="-o $p/youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 channelOutput="-o $p/youtube/%(uploader)s/(channel)s/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
-musicOutput="-o $p/soundcoude/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
+musicOutput="-o $p/soundcloud/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 otherOutput="-o $p/other/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
 
 video="$quality $setting $subtitle $videoOutput"
