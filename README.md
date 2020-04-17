@@ -1,6 +1,15 @@
 ##### Ellaco is a manager for automating download lists based on` youtube-dl`
 
+
+
+[![Donate](https://img.shields.io/badge/Donate-IRAN-green)](https://idpay.ir/oky2abbas)
+<br>**Funding for faster development**  (`only works with IRAN bank cards`)
+<br>**Payment gateway**: https://idpay.ir/oky2abbas
+
+
+
 ##### Feature
+
 - [x] download  video in (`channel` & `playlist` & `direct link` in ` youtube`)
 - [x] add the embedded `subtitle` by `Youtube Machine Learning`
 - [x] categorize files as folders
@@ -38,8 +47,8 @@
 - `-p` path **(optional)** - default current path - for example ~/Downloads
 - `-f` input file **(sample of the file is available in the repository)**
 
-  - ​ `youtube channel sample` https://www.youtube.com/channel/id
+  -  `youtube channel sample` https://www.youtube.com/channel/id
   -  `youtube playlist sample` https://www.youtube.com/playlist?list=id
-  - ​ `youtube video sample` https://www.youtube.com/watch?v=id
+  -  `youtube video sample` https://www.youtube.com/watch?v=id
 
 #### enjoy :)
