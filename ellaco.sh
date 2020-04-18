@@ -2,7 +2,7 @@
 terminal=$(tty)
 clear
 
-OS="`uname`"
+OS=`uname`
 echo "STARTING ELLACO DOWNOAD ..."
 
 q="highest"
@@ -57,18 +57,18 @@ other="$quality $otherOutput"
 
 downoadURL() {
     if [[ $1 == *"youtube"* && $1 == *"watch"* ]]; then
-        youtube-dl $video --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl  $video --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1 &
         elif [[ $1 == *"youtube"* && $1 == *"list"* ]]; then
-        youtube-dl $playlist --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl  $playlist --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1 &
         elif [[ $1 == *"youtube"* && ($1 == *"channel"* || $1 == *"user"*) ]]; then
-        youtube-dl $channel --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl  $channel --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1 &
         elif [[ $1 == *"soundcloud"* ]]; then
-        youtube-dl $music -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl  $music -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j3 -c -k1m -m 60 --retry-wait=6' $1 &
         elif [[ $1 == *"end"* ]]; then
         printLOG "JUMP"
         return
     else
-        youtube-dl $other -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1
+        youtube-dl $other -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -j1 -c -k1m -m 60 --retry-wait=6' $1 &
     fi
     
     printLOG "DOWNLOADED URL -> $1 & NEXT ..."
@@ -79,7 +79,7 @@ while read -r url; do
     
     if [[ $1 == *"end"* ]]; then
         echo "COMPLETE DOWNLOAD ITEMS"
-        if [[ "$OS" == "Darwin" ]]; then
+        if [[ $OS == "Darwin" ]]; then
             say complete download items #macos
         fi
         break
