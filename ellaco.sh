@@ -10,13 +10,13 @@ s="none"
 p=$PWD
 m="2g"
 
-while getopts q:m:f:p:s option; do
+while getopts q:m:p:s:f: option; do
     case "${option}" in
         q) q=${OPTARG} ;;
         m) m=${OPTARG} ;;
-        f) f=${OPTARG} ;;
         p) p=${OPTARG} ;;
         s) s=${OPTARG} ;;
+        f) f=${OPTARG} ;;
     esac
 done
 
@@ -42,6 +42,7 @@ if [[ $q == *"audio"* ]]; then
     elif [[ $q != *"highest"* ]]; then
     quality="-f $q"
 fi
+
 
 videoOutput="-o $p/youtube/other/%(title)s.%(ext)s"
 listOutput="-o $p/youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
@@ -76,7 +77,6 @@ downoadURL() {
 
 exec <$f
 while read -r url; do
-    
     if [[ $1 == *"end"* ]]; then
         echo "COMPLETE DOWNLOAD ITEMS"
         if [[ $OS == "Darwin" ]]; then
@@ -85,8 +85,7 @@ while read -r url; do
         break
         return
     else
-        clear
-        downoadURL $url
+        downoadURL $url &
     fi
     
 done
