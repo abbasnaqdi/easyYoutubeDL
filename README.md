@@ -1,5 +1,4 @@
-##### Ellaco is a manager for automating download lists based on` youtube-dl`
-
+##### Ellaco is a manager for automating download lists based on ` youtube-dl`
 
 **Bitcoin (BTC) [![Donate](https://img.shields.io/badge/Donate-green)](https://idpay.ir/oky2abbas): `1HPZyUP9EJZi2S87QrvCDrE47qRV4i5Fze`**
 
@@ -11,10 +10,11 @@
 
 ##### Feature
 
-- [x] download  video in (`channel` & `playlist` & `direct link` in ` youtube`)
-- [x] add the embedded `subtitle` by `Youtube Machine Learning`
+- [x] download video in (`channel` & `playlist` & `direct link` in ` youtube`)
+- [x] download **HLS** video by direct link
+- [x] add the embedded `subtitle` by `Youtube Machine Learning` or `attached subtitle`
 - [x] categorize files as folders
-- [x] 16 concurrent connections
+- [x] maximum download speed with concurrent connections
 - [ ] **?**
 
 ##### Dependency : youtube-dl & ffmpeg
@@ -24,13 +24,11 @@
   > ```
 - In **debian** base
 - > ```shell
-  > sudo apt update
-  > sudo apt install youtube-dl ffmpeg aria2
+  > sudo apt update && sudo apt install youtube-dl ffmpeg aria2
   > ```
 - In **readhat** base
 - > ```shell
-  > sudo yum update
-  > sudo yum install youtube-dl ffmpeg aria2
+  > sudo yum update && sudo yum install youtube-dl ffmpeg aria2
   > ```
 
 ##### How to use this ?
@@ -40,8 +38,11 @@
   >```
 - ###### start comment  
 - > ```shell
-  > bash ellaco.sh -q highest -s fa -f ls.txt
+  > bash ellaco.sh -t video -q highest -s en -f ls.txt
+  > bash ellaco.sh -t audio -f ls.txt
+  > bash ellaco.sh -t hls -q best -f ls.txt
   > ```
+- `-t` type - default video - for example video, music, hls, audio (only best audio)
 - `-q` quality **(optional)** - default highest - for example best, highest, audio (only best audio)
 - `-s` subtitle **(optional)** - for example en, fa, fr, ar, sp and ...
 - `-m` max file size **(optional)** - default 2g - for example 100k, 100m ...
