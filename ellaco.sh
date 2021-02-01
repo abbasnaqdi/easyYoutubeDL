@@ -64,7 +64,7 @@ hlsConfig="$quality $hlsOutput"
 
 downoadURL() {
 	if [[ $t == *"hls"* ]]; then
-		youtube-dl  $hlsConfig $1
+		youtube-dl --hls-prefer-native $hlsConfig $1
 	elif [[ $t == *"video"* || $t == *"audio"* && $1 == *"youtube"* && $1 == *"watch"* ]]; then
 		youtube-dl  $video --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x8 -s8 -j2 -c -k1m -m 60 --retry-wait=6' $1 &
 	elif [[ $t == *"video"* || $t == *"audio"* &&  $1 == *"youtube"* && $1 == *"list"* ]]; then
