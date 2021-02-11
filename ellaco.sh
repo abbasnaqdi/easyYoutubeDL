@@ -11,6 +11,7 @@ p=$PWD
 m="2g"
 t="video"
 
+
 while getopts :t:q:m:p:s:f: option; do
 	case "${option}" in
 
@@ -46,7 +47,6 @@ if [[ $t == *"audio"* ]]; then
 elif [[ $q != *"highest"* ]]; then
 	quality="-f $q"
 fi
-
 
 videoOutput="-o $p/youtube/other/%(title)s.%(ext)s"
 listOutput="-o $p/youtube/%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s"
@@ -92,8 +92,6 @@ while read -r url; do
         fi
         break
         return
-    elif [[ $t == *"hls"* ]]; then
-    	downoadURL $url
     else downoadURL $url &
     fi
     
