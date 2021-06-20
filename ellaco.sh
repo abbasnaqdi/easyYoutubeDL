@@ -29,7 +29,7 @@ printLOG() {
 	echo $1 >>$log
 }
 
-setting="-ciw -4 -R infinite --max-filesize $m"
+setting="--console-title -ciw -4 -R infinite --max-filesize $m"
 
 if [[ $s == *"none"* ]]; then
 	subtitle=""
@@ -57,24 +57,24 @@ video="$quality $setting $subtitle $videoOutput"
 playlist="$quality $setting $subtitle $listOutput"
 channel="$quality $setting $subtitle $channelOutput"
 music="$setting $musicOutput"
-other="$quality $otherOutput"
-hlsConfig="$quality $hlsOutput"
+other="$setting $quality $otherOutput"
+hlsConfig="$setting $quality $hlsOutput"
 
 downoadURL() {
 	if [[ $t == *"audio"* ]] && [[ $1 == *"soundcloud"* ]]; then
-		youtube-dl  $music -i --external-downloader aria2c --external-downloader-args '-x8 -s8 -j2 -c -k1m -m 60 --retry-wait=6' $1 &
+		youtube-dl  $music -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -c -k1m -m 60 --retry-wait=6' $1
 	elif [[ $t == *"video"* ]]; then
 		if [[ $1 == *"youtube"* ]] && [[ $1 == *"watch"* ]]; then
-			youtube-dl  $video --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x8 -s8 -j2 -c -k1m -m 60 --retry-wait=6' $1 &
+			youtube-dl  $video --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -c -k1m -m 60 --retry-wait=6' $1
 		elif [[ $1 == *"youtube"* ]] && [[ $1 == *"list"* ]]; then
-			youtube-dl  $playlist --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x8 -s8 -j2 -c -k1m -m 60 --retry-wait=6' $1 &
+			youtube-dl  $playlist --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -c -k1m -m 60 --retry-wait=6' $1
 		elif [[ $1 == *"youtube"* ]] && [[ $1 == *"channel"* || $1 == *"user"* ]]; then
-			youtube-dl  $channel --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x8 -s8 -j2 -c -k1m -m 60 --retry-wait=6' $1 &
+			youtube-dl  $channel --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -c -k1m -m 60 --retry-wait=6' $1
 		fi
 	elif [[ $t == *"hls"* ]]; then
-		youtube-dl --hls-prefer-native $hlsConfig $1
+		youtube-dl --hls-use-mpegts $hlsConfig $1
 	else 
-		youtube-dl $other -i --external-downloader aria2c --external-downloader-args '-x8 -s8 -j2 -c -k1m -m 60 --retry-wait=6' $1 &
+		youtube-dl $other -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -c -k1m -m 60 --retry-wait=6' $1
 	fi
 
 	printLOG "complete -> $1 & next ..."
@@ -92,7 +92,7 @@ while read -r url; do
         return
     elif [[ $t == *"hls"* ]]; then
     	downoadURL $url
-    else downoadURL $url &
+    else downoadURL $url
     fi
     
 done
