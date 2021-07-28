@@ -1,10 +1,11 @@
-##### Ellaco is a manager for automating download lists based on ` youtube-dl`
+**Ellaco** is a manager for automating download lists based on **` youtube-dl`**
 
-**Bitcoin (BTC) [![Donate](https://img.shields.io/badge/Donate-green)](https://idpay.ir/oky2abbas): `1HPZyUP9EJZi2S87QrvCDrE47qRV4i5Fze`**
 
-**Ethereum (ETH) [![Donate](https://img.shields.io/badge/Donate-green)](https://idpay.ir/oky2abbas): `0x4a4b0A26Eb31e9152653E4C08bCF10f04a0A02a9`**
 
-**Tron (TRX) [![Donate](https://img.shields.io/badge/Donate-green)](https://idpay.ir/oky2abbas): `TAewZVAD4eKjPo9uJ5TesxJUrXiBtVATsK`**
+[![Donate](https://img.shields.io/badge/Cryptocurrency-Donate-green)](https://idpay.ir/oky2abbas) **BTC**: `1HPZyUP9EJZi2S87QrvCDrE47qRV4i5Fze`
+
+[![Donate](https://img.shields.io/badge/Cryptocurrency-Donate-blue)](https://idpay.ir/oky2abbas) **ETH or USDT**: `0x4a4b0A26Eb31e9152653E4C08bCF10f04a0A02a9`
+
 
 
 
