@@ -31,6 +31,11 @@
 - > ```shell
   > sudo yum update && sudo yum install youtube-dl ffmpeg aria2
   > ```
+- In **windows**
+- > ```shell
+  > Step One: Install the Ubuntu WSL terminal
+  > Step Two: Follow the installation steps in debian Base
+  > ```
 
 ##### How to use this ?
 - ###### Download bash file 
