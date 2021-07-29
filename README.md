@@ -1,4 +1,4 @@
-**Ellaco** is a manager for automating download lists based on **` youtube-dl`**
+**EasyYoutubeDL** is a manager for automating download lists based on **` youtube-dl`**
 
 
 
@@ -35,13 +35,13 @@
 ##### How to use this ?
 - ###### Download bash file 
 - >```shell
-  >wget https://raw.githubusercontent.com/dfmabbas/ellaco/master/ellaco.sh
+  >wget https://raw.githubusercontent.com/oky2abbas/easyYoutubeDL/master/easyYoutubeDL.sh
   >```
 - ###### start comment  
 - > ```shell
-  > bash ellaco.sh -t video -q highest -s en -f ls.txt
-  > bash ellaco.sh -t audio -f ls.txt
-  > bash ellaco.sh -t hls -q best -f ls.txt
+  > bash easyYoutubeDL.sh -t video -q highest -s en -f ls.txt
+  > bash easyYoutubeDL.sh -t audio -f ls.txt
+  > bash easyYoutubeDL.sh -t hls -q best -f ls.txt
   > ```
 - `-t` type - default video - for example video, music, hls, audio (only best audio)
 - `-q` quality **(optional)** - default highest - for example best, highest, audio (only best audio)
