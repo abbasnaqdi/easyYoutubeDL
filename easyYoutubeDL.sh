@@ -34,7 +34,7 @@ setting="--console-title -ciw -4 -R infinite --max-filesize $m"
 if [[ $s == *"none"* ]]; then
 	subtitle=""
 else
-	subtitle="--write-auto-sub --sub-lang $s --embed-subs"
+	subtitle="--write-sub --write-auto-sub --embed-subs --sub-lang $s --convert-subs srt"
 fi
 
 quality="-f bestvideo[ext=mp4]+bestaudio/bestvideo+bestaudio/best"
@@ -57,24 +57,24 @@ video="$quality $setting $subtitle $videoOutput"
 playlist="$quality $setting $subtitle $listOutput"
 channel="$quality $setting $subtitle $channelOutput"
 music="$setting $musicOutput"
-other="$setting $quality $otherOutput"
-hlsConfig="$setting $quality $hlsOutput"
+other="$setting $quality $subtitle $otherOutput"
+hlsConfig="$setting $quality $subtitle $hlsOutput"
 
 downoadURL() {
 	if [[ $t == *"audio"* ]] && [[ $1 == *"soundcloud"* ]]; then
-		youtube-dl  $music -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -c -k1m -m 60 --retry-wait=6' $1
+		youtube-dl  $music -i --external-downloader aria2c --external-downloader-args '--file-allocation=none -k 2M -x 16 -s 16 -c -j 4 -m 60 --retry-wait=6' $1
 	elif [[ $t == *"video"* ]]; then
 		if [[ $1 == *"youtube"* ]] && [[ $1 == *"watch"* ]]; then
-			youtube-dl  $video --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -c -k1m -m 60 --retry-wait=6' $1
+			youtube-dl  $video -i --external-downloader aria2c --external-downloader-args '--file-allocation=none -k 2M -x 16 -s 16 -c -j 4 -m 60 --retry-wait=6' $1
 		elif [[ $1 == *"youtube"* ]] && [[ $1 == *"list"* ]]; then
-			youtube-dl  $playlist --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -c -k1m -m 60 --retry-wait=6' $1
+			youtube-dl  $playlist -i --external-downloader aria2c --external-downloader-args '--file-allocation=none -k 2M -x 16 -s 16 -c -j 4 -m 60 --retry-wait=6' $1
 		elif [[ $1 == *"youtube"* ]] && [[ $1 == *"channel"* || $1 == *"user"* ]]; then
-			youtube-dl  $channel --convert-subs 'srt' -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -c -k1m -m 60 --retry-wait=6' $1
+			youtube-dl  $channel -i --external-downloader aria2c --external-downloader-args '--file-allocation=none -k 2M -x 16 -s 16 -c -j 4 -m 60 --retry-wait=6' $1
 		fi
 	elif [[ $t == *"hls"* ]]; then
 		youtube-dl --hls-use-mpegts $hlsConfig $1
 	else 
-		youtube-dl $other -i --external-downloader aria2c --external-downloader-args '-x16 -s16 -c -k1m -m 60 --retry-wait=6' $1
+		youtube-dl $other -i --external-downloader aria2c --external-downloader-args '--file-allocation=none -k 2M -x 16 -s 16 -c -j 4 -m 60 --retry-wait=6' $1
 	fi
 
 	printLOG "complete -> $1 & next ..."
